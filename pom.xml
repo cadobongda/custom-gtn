@@ -61,6 +61,8 @@
       <jcip.version>1.0</jcip.version>
       <commons-dbcp.version>1.2.2</commons-dbcp.version>
       <com.google.javascript.version>r1592</com.google.javascript.version>
+      <javax.jms.version>1.1</javax.jms.version>
+      <netty.version>3.2.3.Final</netty.version>
 
       <!-- ************** -->
       <!-- Build settings -->
@@ -80,6 +82,7 @@
       <!-- -->
       <surefire.exo.profiles>hsqldb</surefire.exo.profiles>
 
+      <hornetq.version>2.2.5.Final</hornetq.version>
    </properties>
 
    <scm>
@@ -423,6 +426,11 @@
          </dependency>
 
          <!-- GateIn -->
+         <dependency>
+            <groupId>org.exoplatform.portal</groupId>
+            <artifactId>exo.portal.component.betmodules.messaging</artifactId>
+            <version>3.3.0-CR01-cadobongda</version>
+         </dependency>
          <dependency>
             <groupId>org.exoplatform.portal</groupId>
             <artifactId>exo.portal.component.common</artifactId>
@@ -816,7 +824,29 @@
             <artifactId>jcip-annotations</artifactId>
             <version>${jcip.version}</version>
          </dependency>
-	 
+
+         <!-- HornetQ -->
+         <dependency>
+            <groupId>org.hornetq</groupId>
+            <artifactId>hornetq-jms</artifactId>
+            <version>${hornetq.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.hornetq</groupId>
+            <artifactId>hornetq-core</artifactId>
+            <version>${hornetq.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>javax.jms</groupId>
+            <artifactId>jms</artifactId>
+            <version>${javax.jms.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.jboss.netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>${netty.version}</version>
+         </dependency>
+
       </dependencies>
 
    </dependencyManagement>

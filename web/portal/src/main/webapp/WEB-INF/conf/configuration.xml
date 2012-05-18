@@ -59,4 +59,7 @@
    <import>war:/conf/portal/controller-configuration.xml</import>
    <import>war:/conf/portal/web-configuration.xml</import>
    <import>war:/conf/portal/gadget-configuration.xml</import>
+
+   <!-- Cadobongda related services -->
+   <import>war:/conf/bet/messaging-configuration.xml</import>
 </configuration>
