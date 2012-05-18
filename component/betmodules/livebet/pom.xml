@@ -1,3 +1,4 @@
+
 <!--
 
     Copyright (C) 2009 eXo Platform SAS.
@@ -22,22 +23,36 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <parent>
     <groupId>org.exoplatform.portal</groupId>
-    <artifactId>exo.portal.component</artifactId>
+    <artifactId>exo.portal.component.betmodules</artifactId>
     <version>3.3.0-CR01-cadobongda</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>exo.portal.component.betmodules</artifactId>
-  <packaging>pom</packaging>
-  <name>Bet modules</name>
+  <artifactId>exo.portal.component.betmodules.livebet</artifactId>
+  <packaging>jar</packaging>
+  <name>Live bet module</name>
+  <dependencies>
 
-  <properties>
-    <hornetq.version>2.2.5.Final</hornetq.version>
-  </properties>
-
-  <modules>
-    <module>messaging</module>
-    <module>livedata</module>
-    <module>livebet</module>
-  </modules>
+    <dependency>
+      <groupId>org.exoplatform.portal</groupId>
+      <artifactId>exo.portal.component.betmodules.messaging</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.exoplatform.kernel</groupId>
+      <artifactId>exo.kernel.container</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.exoplatform.kernel</groupId>
+      <artifactId>exo.kernel.commons</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.jms</groupId>
+      <artifactId>jms</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
 </project>

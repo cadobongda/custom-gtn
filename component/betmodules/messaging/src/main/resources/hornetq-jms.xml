@@ -16,4 +16,8 @@
         <entry name="/queue/exampleQueue"/>
     </queue>
 
+    <topic name="exampleTopic">
+        <entry name="/topic/exampleTopic"/>
+    </topic>
+
 </configuration>

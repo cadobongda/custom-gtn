@@ -433,6 +433,11 @@
          </dependency>
          <dependency>
             <groupId>org.exoplatform.portal</groupId>
+            <artifactId>exo.portal.component.betmodules.livedata</artifactId>
+            <version>3.3.0-CR01-cadobongda</version>
+         </dependency>
+         <dependency>
+            <groupId>org.exoplatform.portal</groupId>
             <artifactId>exo.portal.component.common</artifactId>
             <version>3.3.0-CR01-cadobongda</version>
          </dependency>

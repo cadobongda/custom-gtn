@@ -62,4 +62,5 @@
 
    <!-- Cadobongda related services -->
    <import>war:/conf/bet/messaging-configuration.xml</import>
+   <import>war:/conf/bet/bet-order-broker-configuration.xml</import>
 </configuration>
