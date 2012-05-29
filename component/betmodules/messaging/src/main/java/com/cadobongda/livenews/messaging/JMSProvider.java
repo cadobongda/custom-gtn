@@ -25,11 +25,8 @@ import org.gatein.common.logging.LoggerFactory;
 import org.hornetq.jms.server.embedded.EmbeddedJMS;
 import org.picocontainer.Startable;
 import java.io.File;
-import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import javax.jms.Connection;
@@ -65,43 +62,25 @@ public class JMSProvider implements Startable
 
    public void start()
    {
-      /**
-       * We need to set a custom class loader as the FileDeploymentManager in HornetQ use ClassLoader instead of URL.openConnection
-       * so external file configuration won't be processed.
-       */
       final ClassLoader cl = Thread.currentThread().getContextClassLoader();
       boolean resetLoader = false;
-
       try
       {
-         Set<URL> urls = new HashSet<URL>();
          if(hornetConfigDir != null)
          {
-            LOG.info("HornetQ config directory is " + hornetConfigDir + " , setup config resource paths now");
-
-            File jmsConfigFile = new File(hornetConfigDir + "/hornetq-jms.xml");
-            if(jmsConfigFile.exists())
+            LOG.info("Use configuration under " + hornetConfigDir);
+            File f = new File(hornetConfigDir);
+            if(f.exists())
             {
-               LOG.info("Found hornetq-jms.xml under " + hornetConfigDir);
-               URI jmsConfigFileURI = jmsConfigFile.toURI().normalize();
-               jmsServer.setJmsConfigResourcePath(jmsConfigFileURI.toString());
-               urls.add(jmsConfigFileURI.toURL());
+               ClassLoader customLoader = new URLClassLoader(new URL[]{f.toURI().normalize().toURL()}, cl);
+               Thread.currentThread().setContextClassLoader(customLoader);
+               resetLoader = true;
             }
 
             File hornetConfigFile = new File(hornetConfigDir + "/hornetq-configuration.xml");
             if(hornetConfigFile.exists())
             {
-               LOG.info("Found hornetq-configuration.xml under " + hornetConfigDir);
-               URI hornetConfigFileURI = hornetConfigFile.toURI().normalize();
-               jmsServer.setConfigResourcePath(hornetConfigFileURI.toString());
-               urls.add(hornetConfigFileURI.toURL());
-            }
-
-            if(urls.size() > 0)
-            {
-               ClassLoader customCl = new URLClassLoader(urls.toArray(new URL[urls.size()]), cl);
-               Thread.currentThread().setContextClassLoader(customCl);
-               resetLoader = true;
+               jmsServer.setConfigResourcePath(hornetConfigFile.toURI().normalize().toURL().toString());
             }
          }
          else
